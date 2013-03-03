@@ -3,6 +3,7 @@
 # include <array>
 # include <numeric>
 # include <random>
+# include <algorithm>
 # include "PerlinNoise.hpp"
 
 PerlinNoise::PerlinNoise( unsigned seed )
