@@ -1,4 +1,3 @@
-
 # include <iostream>
 # include <sstream>
 # include "PerlinNoise.hpp"
