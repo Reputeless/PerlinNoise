@@ -1,4 +1,6 @@
 ﻿# Perlin Noise C++11
+﻿
+Distributed under the MIT license, see LICENSE.txt
 
 Ken Perlin の ImprovedNoise (<http://mrl.nyu.edu/~perlin/noise/>) を C++11 で実装しました。  
 Visual Studio 2012 で動作を確認しています。
@@ -9,7 +11,7 @@ Visual Studio 2012 で動作を確認しています。
 * オクターブノイズ
 
 の機能を追加しました。  
-  
+
 Sample.cpp を実行すると、入力したパラメータで雲模様の画像を作成します。  
 入力例
 * frequency = 8.0
