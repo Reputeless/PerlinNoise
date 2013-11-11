@@ -1,4 +1,3 @@
-
 # include <cmath>
 # include <array>
 # include <numeric>
@@ -8,7 +7,7 @@
 
 PerlinNoise::PerlinNoise( unsigned seed )
 {
-	// Precondition: 0 < seed
+	// workaround for VS2012
 	if(seed==0)
 	{
 		seed = std::mt19937::default_seed;
