@@ -91,9 +91,9 @@ namespace siv
 
 		double noise(double x, double y, double z) const
 		{
-			const std::int32_t X = static_cast<std::int32_t>(::floor(x)) & 255;
-			const std::int32_t Y = static_cast<std::int32_t>(::floor(y)) & 255;
-			const std::int32_t Z = static_cast<std::int32_t>(::floor(z)) & 255;
+			const std::int32_t X = static_cast<std::int32_t>(std::floor(x)) & 255;
+			const std::int32_t Y = static_cast<std::int32_t>(std::floor(y)) & 255;
+			const std::int32_t Z = static_cast<std::int32_t>(std::floor(z)) & 255;
 
 			x -= ::floor(x);
 			y -= ::floor(y);
@@ -109,11 +109,11 @@ namespace siv
 			return lerp(w, lerp(v, lerp(u, grad(p[AA], x, y, z),
 				grad(p[BA], x - 1, y, z)),
 				lerp(u, grad(p[AB], x, y - 1, z),
-					grad(p[BB], x - 1, y - 1, z))),
+				grad(p[BB], x - 1, y - 1, z))),
 				lerp(v, lerp(u, grad(p[AA + 1], x, y, z - 1),
-					grad(p[BA + 1], x - 1, y, z - 1)),
-					lerp(u, grad(p[AB + 1], x, y - 1, z - 1),
-						grad(p[BB + 1], x - 1, y - 1, z - 1))));
+				grad(p[BA + 1], x - 1, y, z - 1)),
+				lerp(u, grad(p[AB + 1], x, y - 1, z - 1),
+				grad(p[BB + 1], x - 1, y - 1, z - 1))));
 		}
 
 		double octaveNoise(double x, std::int32_t octaves) const
