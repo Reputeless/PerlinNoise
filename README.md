@@ -1,21 +1,22 @@
-﻿# Perlin Noise C++11
-﻿
-Distributed under the MIT license, see LICENSE.txt
+﻿# siv::PerlinNoise
+**siv::PerlinNoise** is a Perlin noise library for modern C++.
+﻿Based on Ken Perlin's ImprovedNoise (<http://mrl.nyu.edu/~perlin/noise/>).
 
-Ken Perlin の ImprovedNoise (<http://mrl.nyu.edu/~perlin/noise/>) を C++11 で実装しました。  
-Visual Studio 2012 で動作を確認しています。
+## Features
+* random seed
+* 1D/2D/3D noise
+* octave noise
+* [0.0, 1.0] noise
 
-リファレンス実装に加えて
-* 乱数シード設定
-* 1D, 2D ノイズ
-* オクターブノイズ
-
-の機能を追加しました。  
-
-Example.cpp を実行すると、入力したパラメータで雲模様の画像を作成します。  
-入力例
+## Examples
+Run Test_PerlinNoise.cpp with the following parameters.
+```
 * frequency = 8.0
 * octaves = 8
 * seed = 12345
+```
 
-![f8o8_12345](https://lh4.googleusercontent.com/-YGjRmYg8E3I/UTM4CTD_KyI/AAAAAAAACDI/RPKF_r_XOfA/s800/f8o8_12345.png)
+![noise](f8o8_12345.bmp)
+
+## License
+siv::PerlinNoise is distributed under the MIT license.
