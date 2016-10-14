@@ -95,9 +95,9 @@ namespace siv
 			const std::int32_t Y = static_cast<std::int32_t>(std::floor(y)) & 255;
 			const std::int32_t Z = static_cast<std::int32_t>(std::floor(z)) & 255;
 
-			x -= ::floor(x);
-			y -= ::floor(y);
-			z -= ::floor(z);
+			x -= std::floor(x);
+			y -= std::floor(y);
+			z -= std::floor(z);
 
 			const double u = fade(x);
 			const double v = fade(y);
