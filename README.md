@@ -1,6 +1,6 @@
-﻿# siv::PerlinNoise
-**siv::PerlinNoise** is a Perlin noise library for modern C++.
-﻿Based on Ken Perlin's ImprovedNoise (<http://mrl.nyu.edu/~perlin/noise/>).
+# siv::PerlinNoise
+**siv::PerlinNoise** is a Perlin noise library for modern C++.  
+Based on Ken Perlin's ImprovedNoise (<http://mrl.nyu.edu/~perlin/noise/>).
 
 ## Features
 * random seed
