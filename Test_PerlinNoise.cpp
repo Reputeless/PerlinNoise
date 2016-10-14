@@ -1,6 +1,6 @@
 //--------------------------------------------------------------------
 //
-//	Perlin noise library for C++
+//	Perlin noise library for modern C++
 //
 //	Copyright (C) 2013-2016 Ryo Suzuki <reputeless@gmail.com>
 //
