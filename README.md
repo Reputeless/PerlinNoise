@@ -8,6 +8,9 @@ Based on Ken Perlin's [Improved Noise](<http://mrl.nyu.edu/~perlin/noise/>).
 * octave noise
 * [0.0, 1.0] noise
 
+## License
+siv::PerlinNoise is distributed under the MIT license.
+
 ## Examples
 Run Test_PerlinNoise.cpp with the following parameters.
 ```
@@ -17,6 +20,3 @@ Run Test_PerlinNoise.cpp with the following parameters.
 ```
 
 ![noise](f8o8_12345.bmp)
-
-## License
-siv::PerlinNoise is distributed under the MIT license.
