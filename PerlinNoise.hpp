@@ -3,7 +3,7 @@
 //	siv::PerlinNoise
 //	Perlin noise library for modern C++
 //
-//	Copyright (C) 2013-2016 Ryo Suzuki <reputeless@gmail.com>
+//	Copyright (C) 2013-2018 Ryo Suzuki <reputeless@gmail.com>
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files(the "Software"), to deal
@@ -64,6 +64,12 @@ namespace siv
 			reseed(seed);
 		}
 
+		template <class URNG>
+		explicit PerlinNoise(URNG& urng)
+		{
+			reseed(urng);
+		}
+
 		void reseed(std::uint32_t seed)
 		{
 			for (size_t i = 0; i < 256; ++i)
@@ -72,6 +78,22 @@ namespace siv
 			}
 
 			std::shuffle(std::begin(p), std::begin(p) + 256, std::default_random_engine(seed));
+
+			for (size_t i = 0; i < 256; ++i)
+			{
+				p[256 + i] = p[i];
+			}
+		}
+
+		template <class URNG>
+		void reseed(URNG& urng)
+		{
+			for (size_t i = 0; i < 256; ++i)
+			{
+				p[i] = i;
+			}
+
+			std::shuffle(std::begin(p), std::begin(p) + 256, urng);
 
 			for (size_t i = 0; i < 256; ++i)
 			{
