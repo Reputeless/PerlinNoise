@@ -11,7 +11,7 @@ Based on Ken Perlin's [Improved Noise](<http://mrl.nyu.edu/~perlin/noise/>).
 ## License
 siv::PerlinNoise is distributed under the MIT license.
 
-## Examples
+## Example
 Run Test_PerlinNoise.cpp with the following parameters.
 ```
 * frequency = 8.0

@@ -2,7 +2,7 @@
 //
 //	Perlin noise library for modern C++
 //
-//	Copyright (C) 2013-2016 Ryo Suzuki <reputeless@gmail.com>
+//	Copyright (C) 2013-2018 Ryo Suzuki <reputeless@gmail.com>
 //
 //	For the license information refer to PerlinNoise.hpp.
 //
@@ -34,20 +34,20 @@ struct BMPHeader
 	std::uint32_t biClrImportant;
 };
 
+static_assert(sizeof(BMPHeader) == 54);
+# pragma pack (pop)
+
 struct RGB
 {
 	double r = 0.0;
 	double g = 0.0;
 	double b = 0.0;
 	constexpr RGB() = default;
-	constexpr RGB(double _rgb)
+	explicit constexpr RGB(double _rgb) noexcept
 		: r(_rgb), g(_rgb), b(_rgb) {}
-	constexpr RGB(double _r, double _g, double _b)
+	constexpr RGB(double _r, double _g, double _b) noexcept
 		: r(_r), g(_g), b(_b) {}
 };
-
-static_assert(sizeof(BMPHeader) == 54, "sizeof(BMPHeader) != 54");
-# pragma pack ( pop )
 
 class Image
 {
@@ -57,12 +57,12 @@ private:
 	
 	std::int32_t m_width = 0, m_height = 0;
 
-	bool inBounds(std::int32_t y, std::int32_t x) const
+	bool inBounds(std::int32_t y, std::int32_t x) const noexcept
 	{
 		return (0 <= y) && (y < m_height) && (0 <= x) && (x < m_width);
 	}
 
-	static constexpr std::uint8_t ToUint8(double x)
+	static constexpr std::uint8_t ToUint8(double x) noexcept
 	{
 		return x >= 1.0 ? 255 : x <= 0.0 ? 0 : static_cast<std::uint8_t>(x * 255.0 + 0.5);
 	}
@@ -150,12 +150,6 @@ public:
 	}
 };
 
-template <class Type>
-inline constexpr const Type& Clamp(const Type& x, const Type& min, const Type& max)
-{
-	return (x < min) ? min : ((max < x) ? max : x);
-}
-
 int main()
 {
 	Image image(512, 512);
@@ -171,12 +165,12 @@ int main()
 		double frequency;
 		std::cout << "double frequency = ";
 		std::cin >> frequency;
-		frequency = Clamp(frequency, 0.1, 64.0);
+		frequency = std::clamp(frequency, 0.1, 64.0);
 
 		int octaves;
 		std::cout << "int32 octaves    = ";
 		std::cin >> octaves;
-		octaves = Clamp(octaves, 1, 16);
+		octaves = std::clamp(octaves, 1, 16);
 
 		std::uint32_t seed;
 		std::cout << "uint32 seed      = ";
