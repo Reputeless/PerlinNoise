@@ -37,7 +37,7 @@ namespace siv
 	{
 	private:
 
-		std::int32_t p[512];
+		std::uint8_t p[512];
 
 		static double Fade(double t) noexcept
 		{
@@ -49,9 +49,9 @@ namespace siv
 			return a + t * (b - a);
 		}
 
-		static double Grad(std::int32_t hash, double x, double y, double z) noexcept
+		static double Grad(std::uint8_t hash, double x, double y, double z) noexcept
 		{
-			const std::int32_t h = hash & 15;
+			const std::uint8_t h = hash & 15;
 			const double u = h < 8 ? x : y;
 			const double v = h < 4 ? y : h == 12 || h == 14 ? x : z;
 			return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
@@ -74,7 +74,7 @@ namespace siv
 		{
 			for (size_t i = 0; i < 256; ++i)
 			{
-				p[i] = i;
+				p[i] = static_cast<std::uint8_t>(i);
 			}
 
 			std::shuffle(std::begin(p), std::begin(p) + 256, std::default_random_engine(seed));
@@ -90,7 +90,7 @@ namespace siv
 		{
 			for (size_t i = 0; i < 256; ++i)
 			{
-				p[i] = i;
+				p[i] = static_cast<std::uint8_t>(i);
 			}
 
 			std::shuffle(std::begin(p), std::begin(p) + 256, urng);
