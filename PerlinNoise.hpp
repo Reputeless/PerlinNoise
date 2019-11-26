@@ -3,7 +3,7 @@
 //	siv::PerlinNoise
 //	Perlin noise library for modern C++
 //
-//	Copyright (C) 2013-2018 Ryo Suzuki <reputeless@gmail.com>
+//	Copyright (C) 2013-2019 Ryo Suzuki <reputeless@gmail.com>
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files(the "Software"), to deal
@@ -64,7 +64,7 @@ namespace siv
 			reseed(seed);
 		}
 
-		template <class URNG>
+		template <class URNG, std::enable_if_t<!std::is_arithmetic_v<URNG>>* = nullptr>
 		explicit PerlinNoise(URNG& urng)
 		{
 			reseed(urng);
@@ -85,7 +85,7 @@ namespace siv
 			}
 		}
 
-		template <class URNG>
+		template <class URNG, std::enable_if_t<!std::is_arithmetic_v<URNG>>* = nullptr>
 		void reseed(URNG& urng)
 		{
 			for (size_t i = 0; i < 256; ++i)
