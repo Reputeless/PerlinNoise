@@ -30,6 +30,8 @@
 # include <numeric>
 # include <algorithm>
 # include <random>
+# include <iterator>
+# include <type_traits>
 
 namespace siv
 {
