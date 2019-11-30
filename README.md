@@ -14,9 +14,9 @@ siv::PerlinNoise is distributed under the MIT license.
 ## Example
 Run Test_PerlinNoise.cpp with the following parameters.
 ```
-* frequency = 8.0
-* octaves = 8
-* seed = 12345
+frequency = 8.0
+octaves = 8
+seed = 12345
 ```
 
 ![noise](f8o8_12345.bmp)
