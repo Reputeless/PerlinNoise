@@ -1,13 +1,5 @@
-//--------------------------------------------------------------------
-//
-//	Perlin noise library for modern C++
-//
-//	Copyright (C) 2013-2018 Ryo Suzuki <reputeless@gmail.com>
-//
-//	For the license information refer to PerlinNoise.hpp.
-//
-//--------------------------------------------------------------------
 
+# include <cassert>
 # include <iostream>
 # include <fstream>
 # include <sstream>
@@ -71,10 +63,10 @@ public:
 
 	Image() = default;
 
-	Image(std::int32_t width, std::int32_t height)
+	Image(std::size_t width, std::size_t height)
 		: m_data(width * height)
-		, m_width(width)
-		, m_height(height) {}
+		, m_width(static_cast<std::int32_t>(width))
+		, m_height(static_cast<std::int32_t>(height)) {}
 
 	void set(std::int32_t x, std::int32_t y, const RGB& color)
 	{
@@ -83,15 +75,15 @@ public:
 			return;
 		}
 
-		m_data[y * m_width + x] = color;
+		m_data[static_cast<std::size_t>(y) * m_width + x] = color;
 	}
 
-	int width() const
+	std::int32_t width() const
 	{
 		return m_width;
 	}
 
-	int height() const
+	std::int32_t height() const
 	{
 		return m_height;
 	}
@@ -122,7 +114,7 @@ public:
 
 		if (std::ofstream ofs{ path, std::ios_base::binary })
 		{
-			ofs.write((const char*)&header, sizeof(header));
+			ofs.write(reinterpret_cast<const char*>(&header), sizeof(header));
 
 			std::vector<std::uint8_t> line(rowSize);
 
@@ -132,13 +124,13 @@ public:
 
 				for (std::int32_t x = 0; x < m_width; ++x)
 				{
-					const RGB& col = m_data[y * m_width + x];
+					const RGB& col = m_data[static_cast<std::size_t>(y) * m_width + x];
 					line[pos++] = ToUint8(col.b);
 					line[pos++] = ToUint8(col.g);
 					line[pos++] = ToUint8(col.r);
 				}
 
-				ofs.write((const char*)line.data(), line.size());
+				ofs.write(reinterpret_cast<const char*>(line.data()), line.size());
 			}
 
 			return true;
@@ -150,8 +142,35 @@ public:
 	}
 };
 
+void Test()
+{
+	siv::PerlinNoise perlinA(std::random_device{});
+	siv::PerlinNoise perlinB;
+
+	std::array<std::uint8_t, 256> state;
+	perlinA.serialize(state);
+	perlinB.deserialize(state);
+
+	assert(perlinA.octaveNoise(0.1, 0.2, 0.3, 4)
+		== perlinB.octaveNoise(0.1, 0.2, 0.3, 4));
+
+	perlinA.reseed(1234);
+	perlinB.reseed(1234);
+
+	assert(perlinA.octaveNoise(0.1, 0.2, 0.3, 4)
+		== perlinB.octaveNoise(0.1, 0.2, 0.3, 4));
+
+	perlinA.reseed(std::mt19937{ 1234 });
+	perlinB.reseed(std::mt19937{ 1234 });
+
+	assert(perlinA.octaveNoise(0.1, 0.2, 0.3, 4)
+		== perlinB.octaveNoise(0.1, 0.2, 0.3, 4));
+}
+
 int main()
 {
+	Test();
+
 	Image image(512, 512);
 
 	std::cout << "---------------------------------\n";
@@ -167,7 +186,7 @@ int main()
 		std::cin >> frequency;
 		frequency = std::clamp(frequency, 0.1, 64.0);
 
-		int octaves;
+		std::int32_t octaves;
 		std::cout << "int32 octaves    = ";
 		std::cin >> octaves;
 		octaves = std::clamp(octaves, 1, 16);
@@ -180,12 +199,11 @@ int main()
 		const double fx = image.width() / frequency;
 		const double fy = image.height() / frequency;
 
-		for (int y = 0; y < image.height(); ++y)
+		for (std::int32_t y = 0; y < image.height(); ++y)
 		{
-			for (int x = 0; x < image.width(); ++x)
+			for (std::int32_t x = 0; x < image.width(); ++x)
 			{
-				const RGB color(perlin.octaveNoise0_1(x / fx, y / fy, octaves));
-
+				const RGB color(perlin.accumulatedOctaveNoise2D_0_1(x / fx, y / fy, octaves));
 				image.set(x, y, color);
 			}
 		}
