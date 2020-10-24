@@ -232,7 +232,7 @@ namespace siv
 
 			for (std::int32_t i = 0; i < octaves; ++i)
 			{
-				result += noise(x) * amp;
+				result += noise1D(x) * amp;
 				x *= 2;
 				amp /= 2;
 			}
