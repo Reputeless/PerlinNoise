@@ -151,20 +151,20 @@ void Test()
 	perlinA.serialize(state);
 	perlinB.deserialize(state);
 
-	assert(perlinA.octaveNoise(0.1, 0.2, 0.3, 4)
-		== perlinB.octaveNoise(0.1, 0.2, 0.3, 4));
+	assert(perlinA.accumulatedOctaveNoise3D(0.1, 0.2, 0.3, 4)
+		== perlinB.accumulatedOctaveNoise3D(0.1, 0.2, 0.3, 4));
 
 	perlinA.reseed(1234);
 	perlinB.reseed(1234);
 
-	assert(perlinA.octaveNoise(0.1, 0.2, 0.3, 4)
-		== perlinB.octaveNoise(0.1, 0.2, 0.3, 4));
+	assert(perlinA.accumulatedOctaveNoise3D(0.1, 0.2, 0.3, 4)
+		== perlinB.accumulatedOctaveNoise3D(0.1, 0.2, 0.3, 4));
 
 	perlinA.reseed(std::mt19937{ 1234 });
 	perlinB.reseed(std::mt19937{ 1234 });
 
-	assert(perlinA.octaveNoise(0.1, 0.2, 0.3, 4)
-		== perlinB.octaveNoise(0.1, 0.2, 0.3, 4));
+	assert(perlinA.accumulatedOctaveNoise3D(0.1, 0.2, 0.3, 4)
+		== perlinB.accumulatedOctaveNoise3D(0.1, 0.2, 0.3, 4));
 }
 
 int main()
