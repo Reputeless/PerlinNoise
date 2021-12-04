@@ -118,5 +118,3 @@ seed = 23456
 ```
 
 ![noise](images/f8o3_23456.png)
-
----
