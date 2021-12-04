@@ -49,7 +49,7 @@ int main()
   - `using value_type = Float;`
   - `using default_random_engine = std::mt19937;`
   - `using seed_type = typename default_random_engine::result_type;`
-- Constructor
+- Constructors
   - `constexpr BasicPerlinNoise();`
   - `BasicPerlinNoise(seed_type seed);`
   - `BasicPerlinNoise(URBG&& urbg);`

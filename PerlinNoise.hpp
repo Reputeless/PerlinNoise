@@ -90,6 +90,11 @@ namespace siv
 
 		static_assert(std::is_floating_point_v<Float>);
 
+		///////////////////////////////////////
+		//
+		//	Typedefs
+		//
+
 		using state_type = std::array<std::uint8_t, 256>;
 
 		using value_type = Float;
@@ -100,7 +105,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	constructors
+		//	Constructors
 		//
 
 		SIVPERLIN_NODISCARD_CXX20
@@ -115,7 +120,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	reseed
+		//	Reseed
 		//
 
 		void reseed(seed_type seed);
@@ -125,7 +130,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	serialize / deserialize
+		//	Serialization
 		//
 
 		[[nodiscard]]
@@ -135,7 +140,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	[-1, 1]
+		//	Noise (The result is in the range [-1, 1])
 		//
 
 		[[nodiscard]]
@@ -149,8 +154,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	[0, 1]
-		//	(noise() * 0.5 + 0.5)
+		//	Noise (The result is remapped to the range [0, 1])
 		//
 
 		[[nodiscard]]
@@ -164,7 +168,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	The result can be out of the range [-1, 1]
+		//	Octave noise (The result can be out of the range [-1, 1])
 		//
 
 		[[nodiscard]]
@@ -178,8 +182,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	The result is in the range [-1, 1]
-		//	(clamp(octave(), -1.0, 1.0))
+		//	Octave noise (The result is clamped to the range [-1, 1])
 		//
 
 		[[nodiscard]]
@@ -193,8 +196,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	The result is in the range [0, 1]
-		//	(clamp(octave() * 0.5 + 0.5, 0.0, 1.0))
+		//	Octave noise (The result is clamped and remapped to the range [0, 1])
 		//
 
 		[[nodiscard]]
@@ -208,8 +210,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	The result is in the range [-1, 1]
-		//	(octave() / MaxAmplitude)
+		//	Octave noise (The result is normalized to the range [-1, 1])
 		//
 
 		[[nodiscard]]
@@ -223,8 +224,7 @@ namespace siv
 
 		///////////////////////////////////////
 		//
-		//	The result is in the range [0, 1]
-		//	((octave() / MaxAmplitude) * 0.5 + 0.5)
+		//	Octave noise (The result is normalized and remapped to the range [0, 1])
 		//
 
 		[[nodiscard]]
@@ -247,8 +247,8 @@ namespace siv
 	{
 		////////////////////////////////////////////////
 		//
-		// These functions are provided for consistency.
-		// You may get different results from std::shuffle() with different standard library implementations.
+		//	These functions are provided for consistency.
+		//	You may get different results from std::shuffle() with different standard library implementations.
 		//
 		SIVPERLIN_CONCEPT_URBG
 		[[nodiscard]]
