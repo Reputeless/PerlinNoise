@@ -13,6 +13,32 @@ The implementation is based on Ken Perlin's [Improved Noise](<http://mrl.nyu.edu
 ## License
 siv::PerlinNoise is distributed under the **MIT license**.
 
+## Usage
+
+```cpp
+# include <iostream>
+# include "PerlinNoise.hpp"
+
+int main()
+{
+	siv::PerlinNoise::seed_type seed = 123456u;
+
+	siv::PerlinNoise perlin{ seed };
+	
+	for (int y = 0; y < 5; ++y)
+	{
+		for (int x = 0; x < 5; ++x)
+		{
+			const double noise = perlin.octave2D_01((x * 0.01), (y * 0.01), 4);
+			
+			std::cout << noise << '\t';
+		}
+
+		std::cout << '\n';
+	}
+}
+```
+
 ## API
 
 ### `template <class Float> class BasicPerlinNoise`
