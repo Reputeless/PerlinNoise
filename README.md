@@ -21,9 +21,9 @@ siv::PerlinNoise is distributed under the **MIT license**.
 
 int main()
 {
-	siv::PerlinNoise::seed_type seed = 123456u;
+	const siv::PerlinNoise::seed_type seed = 123456u;
 
-	siv::PerlinNoise perlin{ seed };
+	const siv::PerlinNoise perlin{ seed };
 	
 	for (int y = 0; y < 5; ++y)
 	{
