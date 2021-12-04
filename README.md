@@ -2,7 +2,7 @@
 ![noise](images/top.png)
 
 **siv::PerlinNoise** is a header-only Perlin noise library for modern C++ (C++17/20).  
-The implementation is based on Ken Perlin's [Improved Noise](<http://mrl.nyu.edu/~perlin/noise/>).
+The implementation is based on Ken Perlin's [Improved Noise](https://cs.nyu.edu/~perlin/noise/).
 
 ## Features
 * 1D / 2D / 3D noise
